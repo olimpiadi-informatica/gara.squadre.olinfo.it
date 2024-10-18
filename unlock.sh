@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-WS="159.149.129.94"
+WS="131.114.2.138"
 DOMAIN="squadre.olinfo.it"  # usiamo vecchio dominio per retrocompatibilita'
                             # tanto sed cancella lo stesso la cosa giusta
 
