@@ -5,32 +5,32 @@
 Consulta la
 <a href="/resources/guida.pdf" class="link link-info">guida</a>
 su come bloccare internet correttamente.
-</div></div><script>
+</div></div></div><div class="toast left-0 z-50 items-end"></div></div> </body></html> <script>
 
-    const URLS = [
-        &quot;https://jsonplaceholder.typicode.com/posts/1&quot;,
-        &quot;https://httpbin.org/get&quot;,
-        &quot;https://reqres.in/api/users&quot;,
-        &quot;https://training.olinfo.it/ping&quot;,
-    ];
+const URLS = [
+    "https://jsonplaceholder.typicode.com/posts/1",
+    "https://httpbin.org/get",
+    "https://reqres.in/api/users",
+    "https://training.olinfo.it/ping",
+];
 
-    async function test(url) {
-        await new Promise((resolve) =&gt; setTimeout(resolve, 1000));
+async function test(url) {
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
-        try {
-            const resp = await fetch(url);
-            if (!resp.ok) return;
-            await resp.text();
-        } catch {
-            return;
-        }
-
-        throw new Error(&quot;Can access internet&quot;);
+    try {
+        const resp = await fetch(url);
+        if (!resp.ok) return;
+        await resp.text();
+    } catch {
+        return;
     }
 
-    Promise.all(URLS.map(test))
-        .then(() =&gt; document.getElementById(&quot;success&quot;).classList.remove(&quot;hidden&quot;))
-        .catch(() =&gt; document.getElementById(&quot;failed&quot;).classList.remove(&quot;hidden&quot;))
-        .finally(() =&gt; document.getElementById(&quot;loading&quot;).classList.add(&quot;hidden&quot;));
+    throw new Error("Can access internet");
+}
 
-    </script></div><div class="toast left-0 z-50 items-end"></div></div> </body></html>
+Promise.all(URLS.map(test))
+    .then(() => document.getElementById("success").classList.remove("hidden"))
+    .catch(() => document.getElementById("failed").classList.remove("hidden"))
+    .finally(() => document.getElementById("loading").classList.add("hidden"));
+
+</script>
