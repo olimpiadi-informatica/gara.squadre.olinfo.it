@@ -1,0 +1,38 @@
+---
+import { CalendarDays, Globe } from "lucide-react";
+import Root from "../layouts/root.astro";
+---
+
+<Root title="No contest running" refresh>
+    <h1 class="text-5xl mb-4" id="name">OIS</h1>
+    <h2 class="text-3xl mb-4 font-bold">No contest is currently running</h2>
+    <div class="text-lg mb-4">
+        <p>There is no currently running contest, you can check the schedule for the next contests.</p>
+        <p>If a contest is expected to start soon, then you probably just need to wait.</p>
+    </div>
+    <div class="flex flex-wrap justify-center gap-4">
+        <a class="btn btn-primary" href="https://squadre.olinfo.it/" id="schedule">
+            <CalendarDays /> Schedule
+        </a>
+        <a class="btn btn-primary" href="http://oisquadre.it/" id="website">
+            <Globe /> Official website
+        </a>
+    </div>
+</Root>
+
+<script is:inline>
+const date = new Date();
+const year = date.getFullYear() - (date.getMonth() <= 7 ? 1 : 0);
+
+const contestName = document.getElementById("name");
+const contestSchedule = document.getElementById("schedule");
+const contestWebsite = document.getElementById("website");
+
+if (window.location.host.startsWith("mirror")) {
+    contestName.innerHTML = `IIOT — Open Contests ${year}/${year % 100 + 1}`;
+    contestSchedule.href = "https://iio.team/schedule";
+    contestWebsite.href = "https://iio.team/";
+} else {
+    contestName.innerHTML = `OIS ${year}/${year % 100 + 1}`;
+}
+</script>

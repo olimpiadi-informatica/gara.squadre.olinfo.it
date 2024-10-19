@@ -1,0 +1,61 @@
+---
+import { CheckIcon, XIcon } from "lucide-react";
+import Root from "../layouts/root.astro";
+---
+
+<Root title="Controllo internet">
+    <h1 class="text-4xl text-center font-bold mb-4">Controllo del blocco internet</h1>
+    <div id="loading">
+        <div class="text-2xl text-center flex flex-col justify-center items-center gap-3 grow">
+            <div>Controllo in corso...</div>
+            <div class="loading loading-spinner" />
+        </div>
+    </div>
+    <div id="success" class="hidden">
+        <div class="text-2xl flex justify-center gap-2 text-success">
+            <CheckIcon size={32} /> Test superato! Internet è correttamente bloccato.
+            <CheckIcon size={32} />
+        </div>
+    </div>
+    <div id="failed" class="hidden">
+        <div class="text-2xl flex justify-center gap-2 text-error mb-2">
+            <XIcon size={32} /> Test fallito! Internet non è bloccato.
+            <XIcon size={32} />
+        </div>
+        <div>
+            Consulta la
+            <a href="/resources/guida.pdf" class="link link-info">guida</a>
+            su come bloccare internet correttamente.
+        </div>
+    </div>
+</Root>
+
+<script is:inline>
+
+const URLS = [
+    "https://jsonplaceholder.typicode.com/posts/1",
+    "https://httpbin.org/get",
+    "https://reqres.in/api/users",
+    "https://training.olinfo.it/ping",
+];
+
+async function test(url) {
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    try {
+        const resp = await fetch(url);
+        if (!resp.ok) return;
+        await resp.text();
+    } catch {
+        return;
+    }
+
+    throw new Error("Can access internet");
+}
+
+Promise.all(URLS.map(test))
+    .then(() => document.getElementById("success").classList.remove("hidden"))
+    .catch(() => document.getElementById("failed").classList.remove("hidden"))
+    .finally(() => document.getElementById("loading").classList.add("hidden"));
+
+</script>

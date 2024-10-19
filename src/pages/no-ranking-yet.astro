@@ -1,0 +1,25 @@
+---
+import Root from "../layouts/root.astro";
+---
+
+<Root title="No ranking yet" refresh>
+    <h1 class="text-5xl mb-4" id="name">OIS</h1>
+    <h2 class="text-3xl mb-4 font-bold">The ranking is not yet available</h2>
+    <div class="text-lg">
+        The ranking will be available at this page only at
+        <a class="link link-info" href="https://www.timeanddate.com/worldclock/fixedtime.html?msg=Ranking&hour=14&min=50&sec=0&p1=215" target="_blank">14:50 Italian Time</a>.
+    </div>
+</Root>
+
+<script is:inline>
+const date = new Date();
+const year = date.getFullYear() - (date.getMonth() <= 7 ? 1 : 0);
+
+const contestName = document.getElementById("name");
+
+if (window.location.host.startsWith("mirror")) {
+    contestName.innerHTML = `IIOT — Open Contests ${year}/${year % 100 + 1}`;
+} else {
+    contestName.innerHTML = `OIS ${year}/${year % 100 + 1}`;
+}
+</script>
