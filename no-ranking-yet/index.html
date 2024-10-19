@@ -2,15 +2,15 @@
 </style></head> <body> <div class="flex min-h-dvh w-full flex-col"><div class="mx-auto flex items-center w-full max-w-screen-xl grow flex-col p-8 text-center"><h1 id="name" class="text-5xl mb-4">OIS</h1><h2 class="text-3xl mb-4 font-bold">The ranking is not yet available</h2><div class="text-lg">
 The ranking will be available at this page only at
 <a href="https://www.timeanddate.com/worldclock/fixedtime.html?msg=Ranking&amp;hour=14&amp;min=50&amp;sec=0&amp;p1=215" target="_blank" class="link link-info">14:50 Italian Time</a>.
-</div></div><div class="toast left-0 z-50 items-end"></div></div> </body></html> <script>
-const date = new Date();
-const year = date.getFullYear() - (date.getMonth() <= 7 ? 1 : 0);
+</div><script>
+    const date = new Date();
+    const year = date.getFullYear() - (date.getMonth() &lt;= 7 ? 1 : 0);
 
-const contestName = document.getElementById("name");
+    const contestName = document.getElementById(&quot;name&quot;);
 
-if (window.location.host.startsWith("mirror")) {
-    contestName.innerHTML = `IIOT — Open Contests ${year}/${year % 100 + 1}`;
-} else {
-    contestName.innerHTML = `OIS ${year}/${year % 100 + 1}`;
-}
-</script>
+    if (window.location.host.startsWith(&quot;mirror&quot;)) {
+        contestName.innerHTML = `IIOT — Open Contests ${year}/${year % 100 + 1}`;
+    } else {
+        contestName.innerHTML = `OIS ${year}/${year % 100 + 1}`;
+    }
+    </script></div><div class="toast left-0 z-50 items-end"></div></div> </body></html>
