@@ -13,33 +13,35 @@ import Root from "../layouts/root.astro";
     </div>
     <div id="success" class="hidden">
         <div class="text-2xl flex justify-center gap-2 text-success">
-            <CheckIcon size={32} /> Test superato! Internet è correttamente bloccato.
-            <CheckIcon size={32} />
+            <CheckIcon size={32} /> Il test è stato superato.
         </div>
     </div>
     <div id="failed" class="hidden">
         <div class="text-2xl flex justify-center gap-2 text-error mb-2">
-            <XIcon size={32} /> Test fallito! Internet non è bloccato.
-            <XIcon size={32} />
+            <XIcon size={32} /> Il test non è stato superato.
         </div>
         <div>
-            Consulta la
-            <a href="/resources/guida.pdf" class="link link-info">guida</a>
-            su come bloccare internet correttamente.
+            Per bloccare internet correttamente consulta la <strong>guida ufficiale</strong>
+            al seguente indirizzo:
+            <br>
+            <a href="/resources/guida.pdf" target="_blank" class="link
+            link-info">https://gara.squadre.olinfo.it/resources/guida.pdf</a>
         </div>
     </div>
+    <div id="debug" class="text-xs text-gray-600 mt-4">debug: </div>
 </Root>
 
 <script is:inline>
 
-const URLS = [
-    "https://jsonplaceholder.typicode.com/posts/1",
-    "https://httpbin.org/get",
-    "https://reqres.in/api/users",
-    "https://training.olinfo.it/ping",
+const TESTS = [
+    ["https://jsonplaceholder.typicode.com/posts/1", "sunt aut facere repellat", false],
+    ["https://dummyjson.com/recipes", "mozzarella", false],
+    ["https://reqres.in/api/users", "george.bluth", false],
+    ["https://training.olinfo.it/ping", "pong", false],
+    ["https://gara.squadre.olinfo.it/ping", "pong", true],
 ];
 
-async function test(url) {
+async function urlContainsValue([url, value]) {
     try {
         const [resp] = await Promise.all([
             fetch(`${url}?t=${Date.now()}`, {
@@ -48,18 +50,32 @@ async function test(url) {
             }),
             new Promise((resolve) => setTimeout(resolve, 1000)),
         ]);
-        if (!resp.ok) return;
-        await resp.text();
+        if (!resp.ok) return false;
+        const text = await resp.text();
+        return text.includes(value);
     } catch {
-        return;
+        return false;
     }
-
-    throw new Error("Can access internet");
 }
 
-Promise.all(URLS.map(test))
-    .then(() => document.getElementById("success").classList.remove("hidden"))
-    .catch(() => document.getElementById("failed").classList.remove("hidden"))
-    .finally(() => document.getElementById("loading").classList.add("hidden"));
+function isGood(element, index) {
+    const good = (element === TESTS[index][2]);
+    document.getElementById("debug").innerHTML += (good ? '+' : '-') + (index + 1);
+    return good;
+}
+
+async function test() {
+    const results = (await Promise.all(TESTS.map(urlContainsValue))).map(isGood);
+
+    if (results.every((value => value === true))) {
+        document.getElementById("success").classList.remove("hidden");
+    } else {
+        document.getElementById("failed").classList.remove("hidden");
+    }
+
+    document.getElementById("loading").classList.add("hidden");
+}
+
+test();
 
 </script>
