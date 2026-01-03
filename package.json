@@ -1,27 +1,27 @@
 {
-  "name": "gara.squadre.olinfo.it",
-  "type": "module",
-  "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "dev": "astro dev",
-    "build": "astro check && astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "@astrojs/check": "^0.9.6",
-    "@astrojs/react": "^4.4.2",
-    "@astrojs/tailwind": "^6.0.2",
-    "@olinfo/react-components": "^0.12.0",
-    "@olinfo/tailwind": "^0.1.0",
-    "@types/react": "^19.2.7",
-    "@types/react-dom": "^19.2.3",
-    "astro": "^5.16.6",
-    "lucide-react": "^0.562.0",
-    "react": "^19.2.3",
-    "react-dom": "^19.2.3",
-    "tailwindcss": "^3.4.19",
-    "typescript": "^5.9.3"
-  }
+	"name": "gara.squadre.olinfo.it",
+	"type": "module",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"dev": "astro dev",
+		"build": "astro check && astro build",
+		"preview": "astro preview",
+		"astro": "astro"
+	},
+	"dependencies": {
+		"@astrojs/check": "^0.9.10",
+		"@astrojs/react": "^7.0.0",
+		"@astrojs/tailwind": "^6.0.2",
+		"@olinfo/react-components": "^0.13.1",
+		"@olinfo/tailwind": "^0.1.0",
+		"@types/react": "^19.3.0",
+		"@types/react-dom": "^19.3.0",
+		"astro": "^7.3.4",
+		"lucide-react": "^1.47.0",
+		"react": "^19.3.0",
+		"react-dom": "^19.3.0",
+		"tailwindcss": "^3.4.19",
+		"typescript": "^6.0.3"
+	}
 }

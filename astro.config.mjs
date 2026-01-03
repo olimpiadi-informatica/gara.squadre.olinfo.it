@@ -13,7 +13,7 @@ export default defineConfig({
     react({ experimentalReactChildren: true }),
   ],
   vite: {
-    ssr: {
+    resolve: {
       noExternal: ["@olinfo/react-components"],
     }
   }

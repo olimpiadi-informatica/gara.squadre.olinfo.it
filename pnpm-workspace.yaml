@@ -1,0 +1,10 @@
+allowBuilds:
+  esbuild: false
+  sharp: true
+
+peerDependencyRules:
+  allowedVersions:
+    astro: "7"
+
+minimumReleaseAgeExclude:
+  - "@olinfo/*"
