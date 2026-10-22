@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-WS="131.114.2.138"
+WS="213.144.152.12"
 DOMAIN="gara.squadre.olinfo.it"
 
 for IPTABLES in "/sbin/iptables" "/sbin/ip6tables"; do
