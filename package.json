@@ -17,7 +17,7 @@
 		"@olinfo/tailwind": "^0.1.0",
 		"@types/react": "^19.3.0",
 		"@types/react-dom": "^19.3.0",
-		"astro": "^7.3.4",
+		"astro": "^7.4.7",
 		"lucide-react": "^1.47.0",
 		"react": "^19.3.0",
 		"react-dom": "^19.3.0",
